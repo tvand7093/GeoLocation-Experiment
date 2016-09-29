@@ -12,7 +12,6 @@ namespace Geo_Location_Experiment
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
         }
     }
 }
