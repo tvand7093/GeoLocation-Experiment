@@ -1,5 +1,6 @@
 ﻿using AgencyRM.SDK.DocuSign;
 using AgencyRM.SDK.DocuSign.Notifications;
+using DocuSign.eSign.Model;
 using DocuSign.GeneratedClasses.ScopeForm;
 using Newtonsoft.Json;
 using System;
@@ -27,7 +28,8 @@ namespace Geo_Location_Experiment.Controllers
 
             public override void PopulateMap()
             {
-                //no fields to populate, so just do nothing.
+                Map[AgentSigner.RoleName] = JsonConvert.DeserializeObject<Tabs>(AgentSigner.TabsAsJson);
+                Map[BeneficiarySigner.RoleName] = JsonConvert.DeserializeObject<Tabs>(BeneficiarySigner.TabsAsJson);
             }
         }
 
