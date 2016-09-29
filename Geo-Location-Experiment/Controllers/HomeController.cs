@@ -84,7 +84,7 @@ namespace Geo_Location_Experiment.Controllers
         [HttpPost]
         public void SaveRequest(ApiNotification notification)
         {
-            if(notification != null)
+            if(notification != null && notification != default(ApiNotification))
             {
                 System.IO.File.WriteAllText(Server.MapPath("~/Notification.json"), JsonConvert.SerializeObject(notification));
             }
