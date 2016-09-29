@@ -81,7 +81,7 @@ namespace Geo_Location_Experiment.Controllers
             return View(error);
         }
 
-
+        [HttpPost]
         public void SaveRequest(ApiNotification notification)
         {
             if(notification != null)
