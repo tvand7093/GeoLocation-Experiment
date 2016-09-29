@@ -9,6 +9,9 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Geo_Location_Experiment.Controllers
 {
@@ -82,10 +85,17 @@ namespace Geo_Location_Experiment.Controllers
         }
 
         [HttpPost]
-        public void SaveRequest(ApiNotification notification)
+        public void SaveRequest()
         {
             try
             {
+                ApiNotification notification = null;
+                if(Request.InputStream != null)
+                {
+                    XmlSerializer s = new XmlSerializer(typeof(ApiNotification));
+                    notification = (ApiNotification)s.Deserialize(Request.InputStream);
+                }
+
                 System.IO.File.WriteAllText(Server.MapPath("~/Notification.json"), JsonConvert.SerializeObject(notification));
             }
             catch(Exception ex)
