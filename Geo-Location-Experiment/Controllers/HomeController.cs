@@ -86,12 +86,12 @@ namespace Geo_Location_Experiment.Controllers
         {
             if(notification != null)
             {
-                System.IO.File.WriteAllText("Notification.json", JsonConvert.SerializeObject(notification));
+                System.IO.File.WriteAllText(Server.MapPath("~/Notification.json"), JsonConvert.SerializeObject(notification));
             }
             else
             {
                 //no notification mapped, so just dump the resposne
-                System.IO.File.WriteAllText("Notification.json", JsonConvert.SerializeObject(Request));
+                System.IO.File.WriteAllText(Server.MapPath("~/Request-Notification.json"), JsonConvert.SerializeObject(Request));
             }
         }
     }
