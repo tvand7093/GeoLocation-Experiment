@@ -65,7 +65,7 @@ namespace Geo_Location_Experiment.Controllers
                 customer.RoleName = BeneficiarySigner.RoleName;
                 customer.Id = "1235";
 
-                List<ISignatureUser> signers = new List<ISignatureUser>() { agent, customer };
+                request.Recipients = new List<ISignatureUser>() { agent, customer };
 
                 //request the signature
                 var service = SignatureFactory.NewManager(config);
