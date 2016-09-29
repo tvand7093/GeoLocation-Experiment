@@ -82,12 +82,12 @@ namespace Geo_Location_Experiment.Controllers
         }
 
         [HttpPost]
-        public void SaveRequest(ApiNotification notification)
+        public void SaveRequest()
         {
             try
             {
                 System.IO.File.WriteAllText(Server.MapPath("~/Request-Notification.json"), JsonConvert.SerializeObject(Request));
-                System.IO.File.WriteAllText(Server.MapPath("~/Notification.json"), JsonConvert.SerializeObject(notification));
+                //System.IO.File.WriteAllText(Server.MapPath("~/Notification.json"), JsonConvert.SerializeObject(notification));
             }
             catch(Exception ex)
             {
