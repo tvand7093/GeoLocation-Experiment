@@ -50,7 +50,7 @@ namespace Geo_Location_Experiment.Controllers
                 config.Url = ConfigurationManager.AppSettings["DocuSign:Url"];
 
                 ISignatureRequest request = SignatureFactory.NewRequest();
-                request.NotifyCompleteUrl = "http://geolocation-experimental.trafficmanager.net/Home/SaveRequest";
+                //request.NotifyCompleteUrl = "http://geolocation-experimental.trafficmanager.net/Home/SaveRequest";
                 request.TemplateId = ConfigurationManager.AppSettings["DocuSign:TemplateId"];
 
                 var agent = SignatureFactory.NewUser();
