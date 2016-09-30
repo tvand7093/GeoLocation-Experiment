@@ -8,16 +8,16 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System;
 using System.Security.Cryptography.X509Certificates;
+using System.Web.Http;
 
 namespace Geo_Location_Experiment.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApiController
     {
         private class Pop : BasePopulator
         {
@@ -38,14 +38,8 @@ namespace Geo_Location_Experiment.Controllers
             }
         }
 
-        public ActionResult Index()
-        {
-            string bytes = "";
-
-            return View();
-        }
-
-        public async Task<ActionResult> SendDoc()
+        [HttpGet]
+        public async Task SendDoc()
         {
             string error;
             try
@@ -78,35 +72,38 @@ namespace Geo_Location_Experiment.Controllers
                 var service = SignatureFactory.NewManager(config);
                 service.ChangeSender(config.Username, config.Password);
                 ISignatureResult result = await service.RequestEmailBasedSignature(request, new Pop());
-                return View(result.EnvelopeId);
             }
             catch(Exception ex)
             {
                 error = JsonConvert.SerializeObject(ex);
             }
-
-            return View(error);
         }
 
-    [HttpPost]
-        public void SaveRequest()
+        [HttpPost]
+        public async Task Post()
         {
             try
             {
-                ApiNotification notification = null;
-                if(Request.InputStream != null)
-                {
-                    XmlSerializer s = new XmlSerializer(typeof(ApiNotification));
-                    notification = (ApiNotification)s.Deserialize(Request.InputStream);
-                }
+                XmlSerializer s = new XmlSerializer(typeof(ApiNotification));
+                var xmlData = await Request.Content.ReadAsStreamAsync();
+                ApiNotification notification = (ApiNotification)s.Deserialize(xmlData);
 
-                System.IO.File.WriteAllText(Server.MapPath("~/Notification.json"), JsonConvert.SerializeObject(notification));
-                System.IO.File.WriteAllBytes(Server.MapPath("~/Doc.pdf"), notification.EnvelopeDocuments.First().Decode());
-                System.IO.File.WriteAllBytes(Server.MapPath("~/Doc-Cert.pdf"), notification.EnvelopeDocuments.Last().Decode());
+                System.IO.File.WriteAllText(System.Web.Hosting.HostingEnvironment.MapPath("~/Notification.json"),
+                    JsonConvert.SerializeObject(notification));
+
+                if(notification.EnvelopeDocuments.Count == 0)
+                {
+                    System.IO.File.WriteAllBytes(System.Web.Hosting.HostingEnvironment.MapPath("~/Doc.pdf"),
+                        notification.EnvelopeDocuments.First().Decode());
+
+                    System.IO.File.WriteAllBytes(System.Web.Hosting.HostingEnvironment.MapPath("~/Doc-Cert.pdf"),
+                        notification.EnvelopeDocuments.Last().Decode());
+                }
             }
             catch(Exception ex)
             {
-                System.IO.File.WriteAllText(Server.MapPath("~/Request-Error.json"), JsonConvert.SerializeObject(ex));
+                System.IO.File.WriteAllText(System.Web.Hosting.HostingEnvironment.MapPath("~/Request-Error.pdf"),
+                    ex.ToString());
             }
 
         }
