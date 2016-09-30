@@ -38,6 +38,8 @@ namespace Geo_Location_Experiment.Controllers
 
         public ActionResult Index()
         {
+            string bytes = "";
+
             return View();
         }
 
@@ -97,6 +99,7 @@ namespace Geo_Location_Experiment.Controllers
                 }
 
                 System.IO.File.WriteAllText(Server.MapPath("~/Notification.json"), JsonConvert.SerializeObject(notification));
+                System.IO.File.WriteAllBytes(Server.MapPath("~/Doc.pdf"), notification.EnvelopeDocuments.First().Decode());
             }
             catch(Exception ex)
             {
