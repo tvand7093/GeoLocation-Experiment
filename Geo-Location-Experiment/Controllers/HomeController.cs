@@ -53,7 +53,7 @@ namespace Geo_Location_Experiment.Controllers
                 config.Url = ConfigurationManager.AppSettings["DocuSign:Url"];
 
                 ISignatureRequest request = SignatureFactory.NewRequest();
-                request.NotifyCompleteUrl = "https://geolocation-experimental.trafficmanager.net/Home/SaveRequest";
+                request.NotifyCompleteUrl = "https://geo-location-west.azurewebsites.net/Home/SaveRequest";
                 request.TemplateId = ConfigurationManager.AppSettings["DocuSign:TemplateId"];
 
                 var agent = SignatureFactory.NewUser();
