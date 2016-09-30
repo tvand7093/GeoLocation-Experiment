@@ -45,8 +45,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AgencyRM.SDK, Version=1.0.0.20721, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AgencyRM.SDK.1.0.0.17-alpha\lib\portable45-net45+win8+wp8\AgencyRM.SDK.dll</HintPath>
+    <Reference Include="AgencyRM.SDK, Version=1.0.0.33160, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AgencyRM.SDK.1.0.0.18-alpha\lib\portable45-net45+win8+wp8\AgencyRM.SDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
@@ -54,11 +54,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DocuSign.GeneratedClasses, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AgencyRM.SDK.1.0.0.17-alpha\lib\portable45-net45+win8+wp8\DocuSign.GeneratedClasses.dll</HintPath>
+      <HintPath>..\packages\AgencyRM.SDK.1.0.0.18-alpha\lib\portable45-net45+win8+wp8\DocuSign.GeneratedClasses.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DocuSign.SDK, Version=1.0.0.20720, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AgencyRM.SDK.1.0.0.17-alpha\lib\portable45-net45+win8+wp8\DocuSign.SDK.dll</HintPath>
+    <Reference Include="DocuSign.SDK, Version=1.0.0.33159, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AgencyRM.SDK.1.0.0.18-alpha\lib\portable45-net45+win8+wp8\DocuSign.SDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -123,7 +123,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AgencyRM.SDK.1.0.0.17-alpha\lib\portable45-net45+win8+wp8\RestSharp.dll</HintPath>
+      <HintPath>..\packages\AgencyRM.SDK.1.0.0.18-alpha\lib\portable45-net45+win8+wp8\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
