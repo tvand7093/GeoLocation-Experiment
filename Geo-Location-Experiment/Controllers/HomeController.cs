@@ -12,6 +12,8 @@ using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Geo_Location_Experiment.Controllers
 {
@@ -86,7 +88,7 @@ namespace Geo_Location_Experiment.Controllers
             return View(error);
         }
 
-        [HttpPost]
+    [HttpPost]
         public void SaveRequest()
         {
             try
@@ -100,6 +102,7 @@ namespace Geo_Location_Experiment.Controllers
 
                 System.IO.File.WriteAllText(Server.MapPath("~/Notification.json"), JsonConvert.SerializeObject(notification));
                 System.IO.File.WriteAllBytes(Server.MapPath("~/Doc.pdf"), notification.EnvelopeDocuments.First().Decode());
+                System.IO.File.WriteAllBytes(Server.MapPath("~/Doc-Cert.pdf"), notification.EnvelopeDocuments.Last().Decode());
             }
             catch(Exception ex)
             {
